@@ -8,12 +8,12 @@
  * since some of these tests may require DOM elements. We want
  * to ensure they don't run until the DOM is ready.
  */
-$(function() {
+$(function () {
     /* This is our first test suite - a test suite just contains
     * a related set of tests. This suite is all about the RSS
     * feeds definitions, the allFeeds variable in our application.
     */
-    describe('RSS Feeds', function() {
+    describe('RSS Feeds', function () {
         /* This is our first test - it tests to make sure that the
          * allFeeds variable has been defined and that it is not
          * empty. Experiment with this before you get started on
@@ -21,16 +21,38 @@ $(function() {
          * allFeeds in app.js to be an empty array and refresh the
          * page?
          */
-        it('are defined', function() {
-            expect(allFeeds).toBeDefined();
-            expect(allFeeds.length).not.toBe(0);
+        it('are defined', function () {
+            expect( allFeeds ).toBeDefined();
+            expect( allFeeds.length ).not.toBe(0);
         });
 
 
-        /* TODO: Write a test that loops through each feed
-         * in the allFeeds object and ensures it has a URL defined
-         * and that the URL is not empty.
+        /* Loop through each feed in the allFeeds object and ensure
+         * it has a URL defined and that the URL is not empty.
          */
+        for (var i = 0, len = allFeeds.length; i < len; i++) {
+
+            (function (feed) {
+
+                // Make a copy of each feed object, so that we are
+                // not directly using the mutable feed object in our test.
+                var feedCopy = feed;
+
+                describe(feed.name + ' URL', function () {
+
+                    (function () {
+
+                        it('is defined and not empty', function () {
+
+                            expect( feedCopy.url ).toBeDefined();
+                            expect( feedCopy.url.trim() ).not.toBe('');
+                        });
+                    })();
+
+                });
+
+            })(allFeeds[i]); // Immediately execute the closure function to make feedCopy.
+        }
 
 
         /* TODO: Write a test that loops through each feed
