@@ -27,38 +27,40 @@ $(function () {
         });
 
 
-        /* Loop through each feed in the allFeeds object and ensure
-         * it has a URL defined and that the URL is not empty.
-         */
+        /*
+        * Loop through each feed in the allFeeds object for URL and name tests.
+        */
         for (var i = 0, len = allFeeds.length; i < len; i++) {
 
             (function (feed) {
-
                 // Make a copy of each feed object, so that we are
                 // not directly using the mutable feed object in our test.
                 var feedCopy = feed;
 
-                describe(feed.name + ' URL', function () {
 
-                    (function () {
+                /*
+                 * Ensure each feed has a URL that is defined and not empty.
+                 */
+                describe(feedCopy.name + ' URL', function () {
+                    it('is defined and not empty', function () {
+                        expect( feedCopy.url ).toBeDefined();
+                        expect( feedCopy.url.trim() ).not.toBe('');
+                    });
+                });
 
-                        it('is defined and not empty', function () {
 
-                            expect( feedCopy.url ).toBeDefined();
-                            expect( feedCopy.url.trim() ).not.toBe('');
-                        });
-                    })();
-
+                /*
+                 * Ensure that each feed has a name that is defined and not empty
+                 */
+                describe(feedCopy.name + ' name', function () {
+                    it('is defined and not empty', function ()  {
+                        expect( feedCopy.name ).toBeDefined();
+                        expect( feedCopy.name.trim() ).not.toBe('');
+                    });
                 });
 
             })(allFeeds[i]); // Immediately execute the closure function to make feedCopy.
         }
-
-
-        /* TODO: Write a test that loops through each feed
-         * in the allFeeds object and ensures it has a name defined
-         * and that the name is not empty.
-         */
     });
 
 
