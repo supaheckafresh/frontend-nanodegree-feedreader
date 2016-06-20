@@ -7,21 +7,26 @@
  */
 
 // The names and URLs to all of the feeds we'd like available.
-var allFeeds = [
-    {
-        name: 'Udacity Blog',
-        url: 'http://blog.udacity.com/feed'
-    }, {
-        name: 'CSS Tricks',
-        url: 'http://css-tricks.com/feed'
-    }, {
-        name: 'HTML5 Rocks',
-        url: 'http://feeds.feedburner.com/html5rocks'
-    }, {
-        name: 'Linear Digressions',
-        url: 'http://feeds.feedburner.com/udacity-linear-digressions'
-    }
-];
+var allFeeds =
+    [
+        {
+            name: 'Udacity Blog',
+            url: 'http://blog.udacity.com/feed'
+        },
+        {
+            name: 'CSS Tricks',
+            url: 'http://css-tricks.com/feed'
+        },
+        {
+            name: 'HTML5 Rocks',
+            url: 'http://feeds.feedburner.com/html5rocks'
+        },
+        {
+            name: 'Linear Digressions',
+            url: 'http://feeds.feedburner.com/udacity-linear-digressions'
+        }
+    ];
+
 
 /* This function starts up our application. The Google Feed
  * Reader API is loaded asynchonously and will then call this
@@ -32,6 +37,7 @@ function init() {
     loadFeed(0);
 }
 
+
 /* This function performs everything necessary to load a
  * feed using the Google Feed Reader API. It will then
  * perform all of the DOM operations required to display
@@ -41,13 +47,14 @@ function init() {
  * which will be called after everything has run successfully.
  */
  function loadFeed(id, cb) {
+
      var feedUrl = allFeeds[id].url,
          feedName = allFeeds[id].name;
 
      $.ajax({
        type: "POST",
        url: 'https://rsstojson.udacity.com/parseFeed',
-       data: JSON.stringify({url: feedUrl}),
+       data: JSON.stringify({ url: feedUrl }),
        contentType:"application/json",
        success: function (result, status){
 
@@ -83,11 +90,13 @@ function init() {
      });
  }
 
+
 /* Google API: Loads the Feed Reader API and defines what function
  * to call when the Feed Reader API is done loading.
  */
 google.load('feeds', '1');
 google.setOnLoadCallback(init);
+
 
 /* All of this functionality is heavily reliant upon the DOM, so we
  * place our code in the $() function to ensure it doesn't execute

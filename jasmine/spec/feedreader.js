@@ -37,27 +37,16 @@ $(function () {
                 // not directly using the mutable feed object in our test.
                 var feedCopy = feed;
 
-
                 /*
                  * Ensure each feed has a URL that is defined and not empty.
                  */
-                describe(feedCopy.name + ' URL', function () {
-                    it('is defined and not empty', function () {
-                        expect( feedCopy.url ).toBeDefined();
-                        expect( feedCopy.url.trim() ).not.toBe('');
-                    });
-                });
+                ensure.definedAndNotEmpty(feedCopy, 'url');
 
 
                 /*
                  * Ensure that each feed has a name that is defined and not empty
                  */
-                describe(feedCopy.name + ' name', function () {
-                    it('is defined and not empty', function ()  {
-                        expect( feedCopy.name ).toBeDefined();
-                        expect( feedCopy.name.trim() ).not.toBe('');
-                    });
-                });
+                ensure.definedAndNotEmpty(feedCopy, 'name');
 
             })(allFeeds[i]); // Immediately execute the closure function to make feedCopy.
         }
