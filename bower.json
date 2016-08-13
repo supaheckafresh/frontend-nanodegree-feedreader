@@ -1,0 +1,20 @@
+{
+  "name": "frontend-nanodegree-feedreader",
+  "homepage": "https://github.com/supaheckafresh/frontend-nanodegree-feedreader",
+  "authors": [
+    "supaheckafresh <neilstrain@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "lodash": "^4.15.0"
+  }
+}

@@ -6,8 +6,8 @@ ensure = {
 
         describe(obj.name + ' ' + key, function () {
             it('is defined and not empty', function () {
-                expect( obj[key] ).toBeDefined();
-                expect( obj[key].trim() ).not.toBe('');
+                expect(obj[key]).toBeDefined();
+                expect(obj[key].trim()).not.toBe('');
             });
         });
     }
